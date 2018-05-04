@@ -1,0 +1,25 @@
+Set lmart, quantum9
+
+migrate
+    Applies migrations to your database
+
+makemigrations
+    Updates any migrations that have changed and creates new ones.
+    Migration scripts basically keep your models that you write with
+    Django synced with the structure of the database you are using.
+    Django uses an Object-relational-mapper (ORM), which just means
+    that things defined in Django models can be linked to components
+    of the database structure, so that you can easily refer to the
+    database in your code. This is done through migrations, which
+    Django updates whenever you use makemigrations when you make a
+    change to your models.
+
+development web server
+    This is the light-weight web server you can use to test your
+    website. It is not robust enough and has too poor performance
+    to be used in production, but it is good for testing. By default,
+    it "serves the site" to localhost:8000, AKA http://127.0.0.1:8000
+
+runserver
+    Start the development server
+
