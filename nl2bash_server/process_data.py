@@ -10,8 +10,7 @@ import sys, os, django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "nl2bash_server.settings")
 django.setup()
 
-from nl2bash_server_app.models import CommandPair, \
-    Verification, EnglishDescription, BashCommand
+from nl2bash_server_app.models import CommandPair, EnglishDescription, BashCommand
 
 if len(sys.argv) < 1:
     print("Usage: " + sys.argv[0] + " <path to dir with data (.verify) files>")
@@ -26,13 +25,19 @@ for filename in os.scandir(file_path):
     if filename.endswith(".verify"):
         with open(filename) as f:
             # Extract the english description, remove trailing newline
-            eng_cmd = f.readline().strip()
+            eng_text = cmd=f.readline().strip()
+            eng_cmd = EnglishDescription(cmd=eng_text)
 
             # Check if this English command is already in the DB
-            if not EnglishDescription.objects.filter(cmd=eng_cmd).exists():
+            if not EnglishDescription.objects.filter(cmd=eng_text).exists() \
+                    and eng_text is not None:
+                eng_cmd.save()
                 for line in f:
                     # Make a new CommandPair - this should also add the
                     # corresponding EnglishDescription and BashCommand
-                    bash_cmd = line.strip()
-                    cmd_pair = CommandPair(eng=eng_cmd, bash=bash_cmd)
-                    cmd_pair.save()
+                    bash_text = line.strip()
+                    bash_cmd = BashCommand(cmd=bash_text)
+                    if bash_text is not None:
+                        bash_cmd.save()
+                        cmd_pair = CommandPair(nl=eng_cmd, bash=bash_cmd)
+                        cmd_pair.save()
