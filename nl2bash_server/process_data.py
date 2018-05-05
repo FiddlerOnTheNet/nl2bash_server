@@ -5,12 +5,28 @@
 # This script takes a directory of those files, then creates CommandPair
 # entries in the database for them.
 
+# Run with: python -m nl2bash_server.process_data ..\..\Documents\nl2bash\nl2bash_server\test_pages\ScrapedPages
+# In the directory with manage.py (top dir of project)
+
 import sys, os, django
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "nl2bash_server.settings")
 django.setup()
 
-from nl2bash_server_app.models import CommandPair, EnglishDescription, BashCommand
+from nl2bash_server_app.models import CommandPair, EnglishDescription, \
+    BashCommand, Verification
+
+
+def clean_all():
+    """ Remove all entries from the database. """
+    CommandPair.objects.all().delete()
+    EnglishDescription.objects.all().delete()
+    BashCommand.objects.all().delete()
+    Verification.objects.all().delete()
+
+
+#clean_all()
+
 
 if len(sys.argv) < 1:
     print("Usage: " + sys.argv[0] + " <path to dir with data (.verify) files>")
@@ -39,5 +55,8 @@ for filename in os.scandir(file_path):
                     bash_cmd = BashCommand(cmd=bash_text)
                     if bash_text is not None:
                         bash_cmd.save()
-                        cmd_pair = CommandPair(nl=eng_cmd, bash=bash_cmd)
+                        ver = Verification(score=0)
+                        ver.save()
+                        cmd_pair = CommandPair(nl=eng_cmd, bash=bash_cmd,
+                                               ver_status=ver)
                         cmd_pair.save()

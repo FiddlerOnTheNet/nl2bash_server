@@ -51,24 +51,29 @@
         <div class="col-sm-2 sidebar">
         </div>
         <div class="col-sm-8 text-left">
-          <h1>Which commands best satisfy the given question?
-          </h1>
-          <br>
-          <p>{{english_command}}
-          </p>
-          <hr>
-          {% for bash_command in bash_cmd_list %}
-          <label>
-            <input type ="checkbox" name="cBox[]" value = "1" class="uCheckBox">
-            <code>{{bash_command}}
-            </code>
-            </input>
-          </label>
-        <br>
-        {% endfor %}.
-        <br>
-        <button type="submit" class="btn btn-default">Submit
-        </button>
+              <h1>Which commands best satisfy the given question?
+              </h1>
+              <br>
+              <p>{{english_command}}
+              </p>
+              <hr>
+              <form action="submit" method="post">
+                  {% csrf_token %}
+                  {% for bash_command in bash_cmd_list %}
+                  <label>
+                    <input type ="checkbox" name="cBox" value ="{{bash_command}}" class="uCheckBox">
+                    <code>{{bash_command}}
+                    </code>
+                    </input>
+                  </label>
+                    <br>
+                  {% endfor %}.
+                    <br>
+                    <button id="submit_btn" type="submit" class="btn btn-default">Submit
+                    </button>
+              </form>
+            <button id="skip_btn" type="button" class="btn btn-dfault">Skip
+            </button>
       </div>
       <div class="col-sm-2 sidebar">
       </div>
