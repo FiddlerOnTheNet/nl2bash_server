@@ -5,9 +5,13 @@
 # This script takes a directory of those files, then creates CommandPair
 # entries in the database for them.
 
+import sys, os, django
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "nl2bash_server.settings")
+django.setup()
+
 from nl2bash_server_app.models import CommandPair, \
     Verification, EnglishDescription, BashCommand
-import sys, os
 
 if len(sys.argv) < 1:
     print("Usage: " + sys.argv[0] + " <path to dir with data (.verify) files>")
@@ -22,10 +26,13 @@ for filename in os.scandir(file_path):
     if filename.endswith(".verify"):
         with open(filename) as f:
             # Extract the english description, remove trailing newline
-            eng = f.readline().strip()
+            eng_cmd = f.readline().strip()
 
             # Check if this English command is already in the DB
-            if EnglishDescription.objects.filter(cmd=eng).exists():
+            if not EnglishDescription.objects.filter(cmd=eng_cmd).exists():
                 for line in f:
-                    print(line)
-    break
+                    # Make a new CommandPair - this should also add the
+                    # corresponding EnglishDescription and BashCommand
+                    bash_cmd = line.strip()
+                    cmd_pair = CommandPair(eng=eng_cmd, bash=bash_cmd)
+                    cmd_pair.save()
