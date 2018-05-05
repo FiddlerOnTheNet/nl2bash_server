@@ -32,6 +32,6 @@ def tester(request):
         context={"english_command": eng_cmd, },
     )
 
-def fetch(request):
-    """ Handles fetching """
+def submit(request):
+    """ Handle the event when the user presses the submit button."""
 

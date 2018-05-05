@@ -16,7 +16,7 @@ class EnglishDescription(models.Model):
 
     def __str__(self):
         """ String representation of an EnglishDescription """
-        return self.cmd
+        return str(self.cmd)
 
 
 class BashCommand(models.Model):
@@ -26,7 +26,7 @@ class BashCommand(models.Model):
 
     def __str__(self):
         """ String representation of an BashCommand """
-        return self.cmd
+        return str(self.cmd)
 
 
 class CommandPair(models.Model):
@@ -37,7 +37,7 @@ class CommandPair(models.Model):
 
     def __str__(self):
         """ String representation of a CommandPair """
-        return self.nl + "\\" + self.bash
+        return str(self.nl) + "\\" + str(self.bash)
 
     # def get_absolute_url(self):
     #     """ Returns the url to access a detailed record for this CommandPair. """
