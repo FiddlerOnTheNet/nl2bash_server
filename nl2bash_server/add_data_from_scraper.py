@@ -1,11 +1,12 @@
-# Python script that adds test data
+# Python script that adds data
 # Format: From ScrapedPages - top line is the English command description,
 # subsequent lines are bash commands suggested to match that English
 # description.
 # This script takes a directory of those files, then creates CommandPair
 # entries in the database for them.
 
-# Run with: python -m nl2bash_server.process_data ..\..\Documents\nl2bash\nl2bash_server\test_pages\ScrapedPages
+# To add test data:
+# Run with: python -m nl2bash_server.add_data_from_scraper <path to ScrapedPages>
 # In the directory with manage.py (top dir of project)
 
 import sys, os, django
@@ -25,7 +26,8 @@ def clean_all():
     Verification.objects.all().delete()
 
 
-#clean_all()
+# Uncomment to reset database
+# clean_all()
 
 
 if len(sys.argv) < 1:

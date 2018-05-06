@@ -38,10 +38,15 @@ class CommandPair(models.Model):
     nl = models.ForeignKey(EnglishDescription, on_delete=models.SET_NULL, null=True)
     bash = models.ForeignKey(BashCommand, on_delete=models.SET_NULL, null=True)
     ver_status = models.ForeignKey('Verification', on_delete=models.SET_NULL, null=True)
+    saved_status = models.BooleanField('Saved', default=0)
 
     def __str__(self):
         """ String representation of a CommandPair """
         return str(self.nl) + "\\" + str(self.bash)
+
+    def set_saved(self):
+        """ Mark this command pair as having been saved in all.nl and all.cmd. """
+        self.saved_status = 1
 
     # def get_absolute_url(self):
     #     """ Returns the url to access a detailed record for this CommandPair. """
@@ -59,8 +64,11 @@ class Verification(models.Model):
         """ Add 1 to this verification score. """
         self.score += 1
 
+    def dec_ver_score(self):
+        """ Subtract 1 from this verification score. """
+        self.score -= 1
+
     def __str__(self):
         """ String for representing a verification object. """
-
         return "Verification score: " + str(self.score)
 

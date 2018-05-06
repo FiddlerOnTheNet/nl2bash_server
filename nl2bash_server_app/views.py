@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.cache import caches
 from .models import CommandPair, Verification, EnglishDescription, BashCommand
 from django.views import generic
 from django.http import HttpResponseRedirect
@@ -7,7 +8,8 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 def tester_init(request):
     """ Sets up the session and redirects to the tester. """
-    request.session["seen"] = []
+    if "seen" in caches:
+        caches["seen"] = []
 
     return redirect(tester)
 
@@ -23,6 +25,8 @@ def get_next_unverified(seen):
         if eng_cmd.cmd not in seen:
             unseen.append(eng_cmd)
 
+    print("tester unseen: " + str(unseen))
+    print("tester seen" + str(seen))
     if len(unseen) == 0:
         return None
     return unseen[0]
@@ -78,10 +82,10 @@ def submit(request):
             cmd_pair = CommandPair.objects.filter(nl__cmd__exact=eng_text)\
                 .get(bash__cmd__exact=bash_text)
 
-            print(cmd_pair)
             cmd_pair.ver_status.inc_ver_score()  # Add 1 to verification score
             cmd_pair.nl.inc_num_verified()  # Inc number of verified commands for
                                             # this English description
+            cmd_pair.ver_status.save()
             cmd_pair.nl.save()
             cmd_pair.save()
 
@@ -93,12 +97,12 @@ def submit(request):
                 cmd_pair = CommandPair.objects.filter(nl__cmd__exact=eng_text) \
                     .get(bash__cmd__exact=bash_text)
                 cmd_pair.ver_status.dec_ver_score()
-
                 cmd_pair.ver_status.save()
 
         # Update the "seen" session value so that the user does not see the same
         # question twice.
         request.session["seen"].append(eng_text)
+        print("submit seen: " + str(request.session["seen"]))
 
     return redirect(tester)
 
@@ -108,3 +112,10 @@ def skip(request):
     This loads new commands without updating any verification
     scores. """
 
+    # Update the "seen" session value so that the user does not see the same
+    # question twice.
+    print("current Eng: " + str(request.session['current_eng_text']))
+    request.session["seen"].append(request.session['current_eng_text'])
+    print("skip seen: " + str(request.session["seen"]))
+
+    return redirect(tester)
