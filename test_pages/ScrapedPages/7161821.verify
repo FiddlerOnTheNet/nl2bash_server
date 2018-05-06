@@ -1,0 +1,2 @@
+How to 'grep' a continuous stream?
+tail -f file | grep --line-buffered my_pattern

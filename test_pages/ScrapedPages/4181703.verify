@@ -1,0 +1,10 @@
+How to concatenate string variables in Bash
+foo="Hello"
+foo="$foo World"
+echo $foo
+> Hello World
+a='hello'
+b='world'
+c=$a$b
+echo $c
+> helloworld

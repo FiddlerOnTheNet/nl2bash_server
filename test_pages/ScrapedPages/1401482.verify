@@ -1,0 +1,4 @@
+YYYY-MM-DD format date in shell script
+DATE=`date +%Y-%m-%d`
+DATE=`date '+%Y-%m-%d %H:%M:%S'`
+man date

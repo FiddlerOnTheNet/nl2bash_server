@@ -1,0 +1,9 @@
+Add line break to 'git commit -m' from the command line
+git commit -m 'Message
+goes
+here'
+git commit -F- <<EOF
+Message
+goes
+here
+EOF

@@ -1,0 +1,32 @@
+Converting string to lower case in Bash
+$ echo "$a" | tr '[:upper:]' '[:lower:]'
+hi all
+$ echo "$a" | awk '{print tolower($0)}'
+hi all
+$ echo "${a,,}"
+hi all
+$ echo "$a" | sed -e 's/\(.*\)/\L\1/'
+hi all
+# this also works:
+$ sed -e 's/\(.*\)/\L\1/' <<< "$a"
+hi all
+$ echo "$a" | perl -ne 'print lc'
+hi all
+lc(){
+    case "$1" in
+        [A-Z])
+        n=$(printf "%d" "'$1")
+        n=$((n+32))
+        printf \\$(printf "%o" "$n")
+        ;;
+        *)
+        printf "%s" "$1"
+        ;;
+    esac
+}
+word="I Love Bash"
+for((i=0;i<${#word};i++))
+do
+    ch="${word:$i:1}"
+    lc "$ch"
+done

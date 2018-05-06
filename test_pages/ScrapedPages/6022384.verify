@@ -1,0 +1,3 @@
+Bash tool to get nth line from a file
+sed 'NUMq;d' file
+sed "${NUM}q;d" file
