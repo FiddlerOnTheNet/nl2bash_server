@@ -14,9 +14,13 @@ class EnglishDescription(models.Model):
     num_verified = models.IntegerField('Number of verified command pairs', null=False,
                                        default=0)
 
+    def inc_num_verified(self):
+        """ Add 1 to the number of verified commands with this English description. """
+        self.num_verified += 1
+
     def __str__(self):
         """ String representation of an EnglishDescription """
-        return self.cmd
+        return str(self.cmd)
 
 
 class BashCommand(models.Model):
@@ -26,7 +30,7 @@ class BashCommand(models.Model):
 
     def __str__(self):
         """ String representation of an BashCommand """
-        return self.cmd
+        return str(self.cmd)
 
 
 class CommandPair(models.Model):
@@ -34,10 +38,15 @@ class CommandPair(models.Model):
     nl = models.ForeignKey(EnglishDescription, on_delete=models.SET_NULL, null=True)
     bash = models.ForeignKey(BashCommand, on_delete=models.SET_NULL, null=True)
     ver_status = models.ForeignKey('Verification', on_delete=models.SET_NULL, null=True)
+    saved_status = models.BooleanField('Saved', default=0)
 
     def __str__(self):
         """ String representation of a CommandPair """
-        return self.nl + "\\" + self.bash
+        return str(self.nl) + "\\" + str(self.bash)
+
+    def set_saved(self):
+        """ Mark this command pair as having been saved in all.nl and all.cmd. """
+        self.saved_status = 1
 
     # def get_absolute_url(self):
     #     """ Returns the url to access a detailed record for this CommandPair. """
@@ -51,22 +60,15 @@ class Verification(models.Model):
 
     score = models.IntegerField('Verification Score', default=0, null=True)
 
+    def inc_ver_score(self):
+        """ Add 1 to this verification score. """
+        self.score += 1
+
+    def dec_ver_score(self):
+        """ Subtract 1 from this verification score. """
+        self.score -= 1
+
     def __str__(self):
         """ String for representing a verification object. """
-
         return "Verification score: " + str(self.score)
 
-
-# class CommandPairInstance(models.Model):
-#     """ Model representing a specific command pair. """
-#
-#     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-#     cmd_pair = models.ForeignKey('CommandPair', on_delete=models.SET_NULL, null=True)
-#
-#     class Meta:
-#         ordering = ['id']
-#
-#     def __str__(self):
-#         """ String for representing the object. """
-#
-#         return self.cmd_pair
