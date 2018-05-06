@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.core.cache import caches
 from .models import CommandPair, Verification, EnglishDescription, BashCommand
 from django.views import generic
 from django.http import HttpResponseRedirect
@@ -8,8 +7,8 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 def tester_init(request):
     """ Sets up the session and redirects to the tester. """
-    if "seen" in caches:
-        caches["seen"] = []
+    if "seen" not in request.session:
+        request.session["seen"] = []
 
     return redirect(tester)
 
