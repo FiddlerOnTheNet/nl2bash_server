@@ -1,0 +1,5 @@
+Automatic exit from bash shell script on error
+#!/bin/bash
+set -e
+# Any subsequent(*) commands which fail will cause the shell script to exit immediately
+bash -e my_script.sh

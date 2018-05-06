@@ -1,0 +1,3 @@
+sudo echo “something” >> /etc/privilegedFile doesn't work… is there an alternative?
+echo 'deb blah ... blah' | sudo tee --append /etc/apt/sources.list
+echo 'deb blah ... blah' | sudo tee --append /etc/apt/sources.list > /dev/null

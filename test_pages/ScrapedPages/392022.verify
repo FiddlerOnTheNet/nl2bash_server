@@ -1,0 +1,2 @@
+What's the best way to send a signal to all members of a process group?
+ps x -o  "%p %r %y %x %c "

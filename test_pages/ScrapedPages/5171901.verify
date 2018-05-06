@@ -1,0 +1,2 @@
+sed command find and replace in file and overwrite file doesn't work, it empties the file
+sed -i.bak s/STRING_TO_REPLACE/STRING_TO_REPLACE_IT/g index.html

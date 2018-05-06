@@ -1,0 +1,41 @@
+What's a concise way to check that environment variables are set in a Unix shell script?
+: ${STATE?"Need to set STATE"}
+: ${DEST:?"Need to set DEST non-empty"}
+: "${STATE?Need to set STATE}"
+: "${DEST:?Need to set DEST non-empty}"
+${parameter:?word}
+In script.sh line 13:
+: ${FOO:?"The environment variable 'FOO' must be set and non-empty"}
+  ^-- SC2086: Double quote to prevent globbing and word splitting.
+: "${STATE?Need to set STATE}"
+: "${DEST:?Need to set DEST non-empty}"
+$ mkdir junk
+$ cd junk
+$ > abc
+$ > def
+$ > ghi
+$ 
+$ x="*"
+$ printf "%s\n" ${x:?You must set x}    # Careless; not recommended
+abc
+def
+ghi
+$ unset x
+$ printf "%s\n" ${x:?You must set x}    # Careless; not recommended
+bash: x: You must set x
+$ printf "%s\n" "${x:?You must set x}"  # Careful: should be used
+bash: x: You must set x
+$ x="*"
+$ printf "%s\n" "${x:?You must set x}"  # Careful: should be used
+*
+$ printf "%s\n" ${x:?"You must set x"}  # Not quite careful enough
+abc
+def
+ghi
+$ x=
+$ printf "%s\n" ${x:?"You must set x"}  # Not quite careful enough
+bash: x: You must set x
+$ unset x
+$ printf "%s\n" ${x:?"You must set x"}  # Not quite careful enough
+bash: x: You must set x
+$

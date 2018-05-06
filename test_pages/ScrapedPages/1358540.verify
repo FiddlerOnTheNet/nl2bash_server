@@ -1,0 +1,2 @@
+How to count all the lines of code in a directory recursively?
+find . -name '*.php' | xargs wc -l

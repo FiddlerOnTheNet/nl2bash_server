@@ -1,0 +1,7 @@
+Replace one substring for another string in shell script
+#!/bin/bash
+firstString="I love Suzi and Marry"
+secondString="Sara"
+echo "${firstString/Suzi/$secondString}"    # prints 'I love Sara and Marry'
+message='The secret code is 12345'
+echo "${message//[0-9]/X}"           # prints 'The secret code is XXXXX'
