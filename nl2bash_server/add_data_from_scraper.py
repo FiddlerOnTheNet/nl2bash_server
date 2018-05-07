@@ -41,7 +41,7 @@ file_path = sys.argv[1]
 for filename in os.scandir(file_path):
     filename = os.fsdecode(filename)
     if filename.endswith(".verify"):
-        with open(filename) as f:
+        with open(filename, 'rb') as f:
             # Extract the english description, remove trailing newline
             eng_text = cmd=f.readline().strip()
             eng_cmd = EnglishDescription(cmd=eng_text)
