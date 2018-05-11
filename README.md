@@ -8,7 +8,7 @@ Run the server from the top project directory with:
 - `pipenv run python manage.py runserver`
 
 This is compacted into a shell script, which can be run with:
-- `sh runserver.sh` on linux (requires pip, as shown above)
+- `sh runserver.sh` on linux (assumes pip refers to the package manager for python 3; modify the command/file to pip3 or whatever the command is if needed)
 
 Refer to: https://docs.djangoproject.com/en/2.0/intro/tutorial01/#the-development-server
 for more information about running the development server.
