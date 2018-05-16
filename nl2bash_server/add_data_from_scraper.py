@@ -4,12 +4,14 @@
 # description.
 # This script takes a directory of those files, then creates CommandPair
 # entries in the database for them.
+# Updated to parse JSON .verify files!
 
 # To add test data:
 # Run with: python -m nl2bash_server.add_data_from_scraper <path to ScrapedPages>
 # In the directory with manage.py (top dir of project)
 
 import sys, os, django
+import json
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "nl2bash_server.settings")
 django.setup()
@@ -42,18 +44,20 @@ for filename in os.scandir(file_path):
     filename = os.fsdecode(filename)
     if filename.endswith(".verify"):
         with open(filename) as f:
+            data = json.load(f)
+
             # Extract the english description, remove trailing newline
-            eng_text = cmd=f.readline().strip()
+            eng_text = data['title']
             eng_cmd = EnglishDescription(cmd=eng_text)
 
             # Check if this English command is already in the DB
             if not EnglishDescription.objects.filter(cmd=eng_text).exists() \
                     and eng_text is not None:
                 eng_cmd.save()
-                for line in f:
+                command_list = data['commands']
+                for bash_text in command_list:
                     # Make a new CommandPair - this should also add the
                     # corresponding EnglishDescription and BashCommand
-                    bash_text = line.strip()
                     bash_cmd = BashCommand(cmd=bash_text)
                     if bash_text is not None:
                         bash_cmd.save()

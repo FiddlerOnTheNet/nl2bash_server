@@ -94,7 +94,7 @@ def submit(request):
         for bash_text in bash_cmd_list:
             if bash_text not in checked_boxes:
                 cmd_pair = CommandPair.objects.filter(nl__cmd__exact=eng_text) \
-                    .get(bash__cmd__exact=bash_text)
+                    .filter(bash__cmd__exact=bash_text).first()
                 cmd_pair.ver_status.dec_ver_score()
                 cmd_pair.ver_status.save()
 
