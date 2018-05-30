@@ -42,7 +42,7 @@ for filename in os.scandir(file_path):
     if filename.endswith(".verify"):
         with open(filename, 'rb') as f:
             # Read f into a string and parse its json
-            obj = json.load(f)
+            obj = json.loads(f.read().decode("utf-8"))
 
             # Extract the english description
             eng_text = obj['title']
