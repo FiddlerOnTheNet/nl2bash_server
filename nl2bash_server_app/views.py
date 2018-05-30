@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import CommandPair, Verification, EnglishDescription, BashCommand
 from django.views import generic
 from django.http import HttpResponseRedirect
+import django.utils.timezone as timezone
 
 
 # Create your views here.
@@ -55,6 +56,7 @@ def tester(request):
 
     bash_cmd_list = []
     for cmd_pair in cmd_pair_list:
+        cmd_pair.nl.cmd.time_accessed = timezone.now
         bash_cmd_list.append(str(cmd_pair.bash))
 
     # Update session info, add data to be passed between views
