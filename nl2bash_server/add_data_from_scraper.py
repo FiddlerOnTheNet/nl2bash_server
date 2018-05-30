@@ -48,21 +48,34 @@ for filename in os.scandir(file_path):
             eng_text = obj['title']
             eng_cmd = EnglishDescription(cmd=eng_text)
 
-            # Check if this English command is already in the DB
-            if not EnglishDescription.objects.filter(cmd=eng_text).exists() \
-                    and eng_text is not None:
-                eng_cmd.save()
+            if eng_text is not None:
+                # Check if this English command is already in the DB
+                if not EnglishDescription.objects.filter(cmd=eng_text).exists():
+                    eng_cmd.save()
 
-                # Commands are in a list now
-                for line in obj['commands']:
-                    # Make a new CommandPair - this should also add the
-                    # corresponding EnglishDescription and BashCommand
-                    bash_text = line
-                    bash_cmd = BashCommand(cmd=bash_text)
-                    if bash_text is not None:
-                        bash_cmd.save()
-                        ver = Verification(score=0)
-                        ver.save()
-                        cmd_pair = CommandPair(nl=eng_cmd, bash=bash_cmd,
-                                               ver_status=ver)
-                        cmd_pair.save()
+                    # Commands are in a list now
+                    for bash_text in obj['commands']:
+                        # Make a new CommandPair - this should also add the
+                        # corresponding EnglishDescription and BashCommand
+                        bash_cmd = BashCommand(cmd=bash_text)
+                        if bash_text is not None:
+                            bash_cmd.save()
+                            ver = Verification(score=0)
+                            ver.save()
+                            cmd_pair = CommandPair(nl=eng_cmd, bash=bash_cmd,
+                                                ver_status=ver)
+                            cmd_pair.save()
+                else:
+                    # If it is in the db, we append command pairs.
+                    for bash_text in obj['commands']:
+                        # Standard procedure, like above.
+                        bash_cmd = BashCommand(cmd=bash_text)
+                        
+                        # For each command, check if the pair itself is also in.
+                        if bash_text is not None and not CommandPair.objects.filter(nl=eng_cmd, bash=bash_cmd).exists():
+                            bash_cmd.save()
+                            ver = Verification(score=0)
+                            ver.save()
+                            cmd_pair = CommandPair(nl=eng_cmd, bash=bash_cmd,
+                                                ver_status=ver)
+                            cmd_pair.save()
