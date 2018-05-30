@@ -1,2 +1,1 @@
-Why is whitespace sometimes needed around metacharacters?
-:(){ :|:&};:
+{"title":"Why is whitespace sometimes needed around metacharacters?","commands":[":(){ :|:\u0026};: \u0026\u0026 ","#!/bin/zsh \u0026\u0026 ","(ls) \u0026\u0026 {ls} \u0026\u0026 { ls; } \u0026\u0026 ",null,"foo() { echo hey\u0026 }\nfoo() { echo hey\u0026}\nfoo(){ echo hey\u0026} \u0026\u0026 foo() {echo hey\u0026} \u0026\u0026 /* We ignore an open brace surrounded by whitespace, and also\n     an open brace followed immediately by a close brace preceded\n     by whitespace.  */ \u0026\u0026 :(){ :|:\u0026 };: \u0026\u0026 :(){\n:|:\u0026 };: \u0026\u0026 "]}

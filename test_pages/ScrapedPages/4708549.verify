@@ -1,0 +1,1 @@
+{"title":"What is the difference between $(command) and `command` in shell programming?","commands":[null,"listing\u003d$(ls -l $(cat filenames.txt)) \u0026\u0026 listing\u003d`ls -l \\`cat filenames.txt\\`` \u0026\u0026 ","`echo \\`foo\\`` \u0026\u0026 $(echo $(foo)) \u0026\u0026 ",null,null]}

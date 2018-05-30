@@ -1,0 +1,1 @@
+{"title":"./configure : /bin/sh^M : bad interpreter [duplicate]","commands":[":set fileformat\u003dunix \u0026\u0026 ",null,"sed -i \u0027s/\\r//\u0027 filename \u0026\u0026 ","dos2unix configure \u0026\u0026 ","cat file_name.sh | tr -d \u0027\\r\u0027 \u003e file_name.sh.new \u0026\u0026 "]}

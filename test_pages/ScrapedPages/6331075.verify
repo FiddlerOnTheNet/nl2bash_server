@@ -1,0 +1,1 @@
+{"title":"Why do you need ./ (dot-slash) before executable or script name to run it in bash?","commands":[null,"echo $PATH \u0026\u0026 PATH\u003d$PATH:. \u0026\u0026 manage.py syncdb \u0026\u0026 PATH\u003d.:$PATH \u0026\u0026 ",null,null,null]}

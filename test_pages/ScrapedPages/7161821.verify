@@ -1,2 +1,1 @@
-How to 'grep' a continuous stream?
-tail -f file | grep --line-buffered my_pattern
+{"title":"How to \u0027grep\u0027 a continuous stream?","commands":["tail -f file | grep --line-buffered my_pattern \u0026\u0026 ",null,"tail -f file | stdbuf -o0 grep my_pattern \u0026\u0026 ","tail -f /var/log/some.log | grep --line-buffered foo | grep bar \u0026\u0026 ","tail -c +0 -f \u003cfile\u003e | grep --line-buffered \u003cpattern\u003e \u0026\u0026 "]}

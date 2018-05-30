@@ -1,4 +1,1 @@
-Pipe output and capture exit status in Bash
-<command> | tee out.txt ; test ${PIPESTATUS[0]} -eq 0
-set -o pipefail
-...
+{"title":"Pipe output and capture exit status in Bash","commands":["\u003ccommand\u003e | tee out.txt ; test ${PIPESTATUS[0]} -eq 0 \u0026\u0026 set -o pipefail\n... \u0026\u0026 ",null,"mkfifo pipe\n tee out.txt \u003c pipe \u0026\n command \u003e pipe\n echo $? \u0026\u0026 ","$ cat x| sed \u0027s///\u0027\ncat: x: No such file or directory\n$ echo $?\n0\n$ cat x| sed \u0027s///\u0027\ncat: x: No such file or directory\n$ echo ${PIPESTATUS[*]}\n1 0\n$ touch x\n$ cat x| sed \u0027s\u0027\nsed: 1: \"s\": substitute pattern can not be delimited by newline or backslash\n$ echo ${PIPESTATUS[*]}\n0 1 \u0026\u0026 ","someprog | filter \u0026\u0026 ((((someprog; echo $? \u003e\u00263) | filter \u003e\u00264) 3\u003e\u00261) | (read xs; exit $xs)) 4\u003e\u00261\n\necho $? \u0026\u0026 "]}

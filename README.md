@@ -7,8 +7,8 @@ Run the server from the top project directory with:
 - `pipenv run python -m nl2bash_server.add_data_from_scraper test_pages/ScrapedPages` (this might take a few minutes)
 - `pipenv run python manage.py runserver`
 
-This is compacted into a shell script, which can be run with:
-- `sh runserver.sh` on linux
+To publicly show the website, you can run the following instead after adding your domain name to ALLOWED_HOSTS in nl2bash_server/settings.py:
+- `pipenv run python manage.py runserver 0.0.0.0:12321` (you can change the port from 12321)
 
 Check the user manual for help using the tester interface. The user manual can be found at
 https://github.com/oisindoherty/nl2bash/blob/master/nl2bash_user_manual.pdf
@@ -16,5 +16,5 @@ https://github.com/oisindoherty/nl2bash/blob/master/nl2bash_user_manual.pdf
 Refer to: https://docs.djangoproject.com/en/2.0/intro/tutorial01/#the-development-server
 for more information about running the development server.
 
-When finished verifying pairs, use the following to save the validations to all.cmd and all.nl:
+When finished verifying pairs, use the following to save the validations to all.cm and all.nl:
 - `pipenv run python -m nl2bash_server.save_data`

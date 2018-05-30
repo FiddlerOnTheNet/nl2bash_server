@@ -1,14 +1,1 @@
-Check if a program exists from a Bash script
-command -v <the_command>
-hash <the_command> # For regular commands. Or...
-type <the_command> # To check built-ins and keywords
-$ command -v foo >/dev/null 2>&1 || { echo >&2 "I require foo but it's not installed.  Aborting."; exit 1; }
-$ type foo >/dev/null 2>&1 || { echo >&2 "I require foo but it's not installed.  Aborting."; exit 1; }
-$ hash foo 2>/dev/null || { echo >&2 "I require foo but it's not installed.  Aborting."; exit 1; }
-gnudate() {
-    if hash gdate 2>/dev/null; then
-        gdate "$@"
-    else
-        date "$@"
-    fi
-}
+{"title":"Check if a program exists from a Bash script","commands":["command -v \u003cthe_command\u003e \u0026\u0026 hash \u003cthe_command\u003e # For regular commands. Or...\ntype \u003cthe_command\u003e # To check built-ins and keywords \u0026\u0026 $ command -v foo \u003e/dev/null 2\u003e\u00261 || { echo \u003e\u00262 \"I require foo but it\u0027s not installed.  Aborting.\"; exit 1; }\n$ type foo \u003e/dev/null 2\u003e\u00261 || { echo \u003e\u00262 \"I require foo but it\u0027s not installed.  Aborting.\"; exit 1; }\n$ hash foo 2\u003e/dev/null || { echo \u003e\u00262 \"I require foo but it\u0027s not installed.  Aborting.\"; exit 1; } \u0026\u0026 gnudate() {\n    if hash gdate 2\u003e/dev/null; then\n        gdate \"$@\"\n    else\n        date \"$@\"\n    fi\n} \u0026\u0026 ","[ -x \"$(command -v foo)\" ] \u0026\u0026 if ! [ -x \"$(command -v git)\" ]; then\n  echo \u0027Error: git is not installed.\u0027 \u003e\u00262\n  exit 1\nfi \u0026\u0026 ","$ command -v foo \u003e/dev/null 2\u003e\u00261 || { echo \"I require foo but it\u0027s not installed.  Aborting.\" \u003e\u00262; exit 1; } \u0026\u0026 ","command_exists () {\n    type \"$1\" \u0026\u003e /dev/null ;\n} \u0026\u0026 if command_exists mvim ; then\n    export VISUAL\u003d\"mvim --nofork\"\nfi \u0026\u0026 ","if which programname \u003e/dev/null; then\n    echo exists\nelse\n    echo does not exist\nfi \u0026\u0026 if [ -x /path/to/programname ]; then\n    echo exists\nelse\n    echo does not exist\nfi \u0026\u0026 "]}

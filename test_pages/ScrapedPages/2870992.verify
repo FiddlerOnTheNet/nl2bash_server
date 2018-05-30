@@ -1,5 +1,1 @@
-Automatic exit from bash shell script on error
-#!/bin/bash
-set -e
-# Any subsequent(*) commands which fail will cause the shell script to exit immediately
-bash -e my_script.sh
+{"title":"Automatic exit from bash shell script on error","commands":["#!/bin/bash\nset -e\n# Any subsequent(*) commands which fail will cause the shell script to exit immediately \u0026\u0026 bash -e my_script.sh \u0026\u0026 ","set -e \u0026\u0026 ","#!/bin/sh\n\nabort()\n{\n    echo \u003e\u00262 \u0027\n***************\n*** ABORTED ***\n***************\n\u0027\n    echo \"An error occurred. Exiting...\" \u003e\u00262\n    exit 1\n}\n\ntrap \u0027abort\u0027 0\n\nset -e\n\n# Add your script below....\n# If an error occurs, the abort() function will be called.\n#----------------------------------------------------------\n# \u003d\u003d\u003d\u003e Your script goes here\n# Done!\ntrap : 0\n\necho \u003e\u00262 \u0027\n************\n*** DONE *** \n************\n\u0027 \u0026\u0026 ","set -e\nset -o pipefail \u0026\u0026 ","#!/bin/bash -e\n\ncd some_dir  \n\n./configure --some-flags  \n\nmake  \n\nmake install \u0026\u0026 "]}

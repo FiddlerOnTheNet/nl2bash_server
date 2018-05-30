@@ -1,0 +1,1 @@
+{"title":"How to determine the current shell I\u0027m working on?","commands":[null,null,"ps -p $$ -oargs\u003d \u0026\u0026 ps -p $$ -ocomm\u003d \u0026\u0026 ","ps | grep `echo $$` | awk \u0027{ print $4 }\u0027 \u0026\u0026 echo $SHELL \u0026\u0026 ","if [ ! -n \"$BASH\" ] ;then echo Please run this script $0 with bash; exit 1; fi \u0026\u0026 "]}

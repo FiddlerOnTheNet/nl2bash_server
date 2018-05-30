@@ -1,4 +1,1 @@
-YYYY-MM-DD format date in shell script
-DATE=`date +%Y-%m-%d`
-DATE=`date '+%Y-%m-%d %H:%M:%S'`
-man date
+{"title":"YYYY-MM-DD format date in shell script","commands":["DATE\u003d`date +%Y-%m-%d` \u0026\u0026 DATE\u003d`date \u0027+%Y-%m-%d %H:%M:%S\u0027` \u0026\u0026 man date \u0026\u0026 ",null,"$ date +\u0027%Y-%m-%d\u0027 \u0026\u0026 ",null,"date -d \u00271 hour ago\u0027 \u0027+%Y-%m-%d\u0027 \u0026\u0026 "]}

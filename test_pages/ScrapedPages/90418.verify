@@ -1,11 +1,1 @@
-Exit Shell Script Based on Process Exit Code
-ls -al file.ext
-rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
-ls -al file.ext | sed 's/^/xx: /"
-pax> false | true ; echo ${PIPESTATUS[0]}
-1
-pax> false | true | false; echo ${PIPESTATUS[*]}
-1 0 1
-true | true | false | true | false
-rcs=${PIPESTATUS[*]}; rc=0; for i in ${rcs}; do rc=$(($i > $rc ? $i : $rc)); done
-echo $rc
+{"title":"Exit Shell Script Based on Process Exit Code","commands":["ls -al file.ext\nrc\u003d$?; if [[ $rc !\u003d 0 ]]; then exit $rc; fi \u0026\u0026 ls -al file.ext | sed \u0027s/^/xx: /\" \u0026\u0026 pax\u003e false | true ; echo ${PIPESTATUS[0]}\n1 \u0026\u0026 pax\u003e false | true | false; echo ${PIPESTATUS[*]}\n1 0 1 \u0026\u0026 true | true | false | true | false\nrcs\u003d${PIPESTATUS[*]}; rc\u003d0; for i in ${rcs}; do rc\u003d$(($i \u003e $rc ? $i : $rc)); done\necho $rc \u0026\u0026 ","set -e\nset -o pipefail \u0026\u0026 ",null,"command1 || exit;\ncommand2 || exit; \u0026\u0026 ","[ $? -eq 0 ] || exit $?; # exit for none-zero return code \u0026\u0026 "]}

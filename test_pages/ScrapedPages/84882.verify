@@ -1,3 +1,1 @@
-sudo echo “something” >> /etc/privilegedFile doesn't work… is there an alternative?
-echo 'deb blah ... blah' | sudo tee --append /etc/apt/sources.list
-echo 'deb blah ... blah' | sudo tee --append /etc/apt/sources.list > /dev/null
+{"title":"sudo echo “something” \u003e\u003e /etc/privilegedFile doesn\u0027t work… is there an alternative?","commands":["echo \u0027deb blah ... blah\u0027 | sudo tee --append /etc/apt/sources.list \u0026\u0026 echo \u0027deb blah ... blah\u0027 | sudo tee --append /etc/apt/sources.list \u003e /dev/null \u0026\u0026 ","sudo sh -c \"echo \u0027something\u0027 \u003e\u003e /etc/privilegedfile\" \u0026\u0026 ","sudo sh -c \"echo \u0027something\u0027 \u003e\u003e /etc/privilegedFile\" \u0026\u0026 ","sudo sh -c \"echo 127.0.0.1 localhost \u003e\u003e /etc/hosts\" \u0026\u0026 ","sudo sh -c \"echo \u003e\u003e somefile\" \u0026\u0026 "]}

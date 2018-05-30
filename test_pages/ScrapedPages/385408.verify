@@ -1,13 +1,1 @@
-Get program execution time in the shell
-$ help time
-
-time: time [-p] PIPELINE
-    Execute PIPELINE and print a summary of the real time, user CPU time,
-    and system CPU time spent executing PIPELINE when it terminates.
-    The return status is the return status of PIPELINE.  The `-p' option
-    prints the timing summary in a slightly different format.  This uses
-    the value of the TIMEFORMAT variable as the output format.
-$ time sleep 2
-real    0m2.009s
-user    0m0.000s
-sys     0m0.004s
+{"title":"Get program execution time in the shell","commands":["$ help time\n\ntime: time [-p] PIPELINE\n    Execute PIPELINE and print a summary of the real time, user CPU time,\n    and system CPU time spent executing PIPELINE when it terminates.\n    The return status is the return status of PIPELINE.  The `-p\u0027 option\n    prints the timing summary in a slightly different format.  This uses\n    the value of the TIMEFORMAT variable as the output format. \u0026\u0026 $ time sleep 2 \u0026\u0026 real    0m2.009s\nuser    0m0.000s\nsys     0m0.004s \u0026\u0026 ","$ /usr/bin/time -v sleep 1\n       Command being timed: \"sleep 1\"\n       User time (seconds): 0.00\n       System time (seconds): 0.00\n       Percent of CPU this job got: 1%\n       Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.05\n       Average shared text size (kbytes): 0\n       Average unshared data size (kbytes): 0\n       Average stack size (kbytes): 0\n       Average total size (kbytes): 0\n       Maximum resident set size (kbytes): 0\n       Average resident set size (kbytes): 0\n       Major (requiring I/O) page faults: 0\n       Minor (reclaiming a frame) page faults: 210\n       Voluntary context switches: 2\n       Involuntary context switches: 1\n       Swaps: 0\n       File system inputs: 0\n       File system outputs: 0\n       Socket messages sent: 0\n       Socket messages received: 0\n       Signals delivered: 0\n       Page size (bytes): 4096\n       Exit status: 0 \u0026\u0026 ","#!/bin/bash\nSTART\u003d$(date +%s)\n# do something\n# start your script work here\nls -R /etc \u003e /tmp/x\nrm -f /tmp/x\n# your logic ends here\nEND\u003d$(date +%s)\nDIFF\u003d$(( $END - $START ))\necho \"It took $DIFF seconds\" \u0026\u0026 ",null,"start\u003d$(date +%s.%N)\n# do some stuff here\ndur\u003d$(echo \"$(date +%s.%N) - $start\" | bc)\n\nprintf \"Execution time: %.6f seconds\" $dur \u0026\u0026 start\u003d$(date +%s.%N); \\\n  sleep 0.1s; \\\n  dur\u003d$(echo \"$(date +%s.%N) - $start\" | bc); \\\n  printf \"Execution time: %.6f seconds\\n\" $dur \u0026\u0026 Execution time: 0.104623 seconds \u0026\u0026 "]}

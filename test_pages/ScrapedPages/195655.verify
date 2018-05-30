@@ -1,0 +1,1 @@
+{"title":"How to copy a file to multiple directories using the gnu cp command","commands":[null,"echo dir1 dir2 dir3 | xargs -n 1 cp file1 \u0026\u0026 ","echo ./fs*/* | xargs -n 1 cp test \u0026\u0026 ","ls | xargs -n 1 cp -i file.dat \u0026\u0026 ","cat \u003cinputfile\u003e | tee \u003coutfile1\u003e \u003coutfile2\u003e \u003e /dev/null \u0026\u0026 "]}
