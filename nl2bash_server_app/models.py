@@ -14,7 +14,7 @@ class EnglishDescription(models.Model):
     # score above 0
     num_verified = models.IntegerField('Number of verified command pairs', null=False,
                                        default=0)
-    time_accessed = models.DateTimeField(default=timezone.now)
+    time_accessed = models.DateTimeField(default=timezone.now())
 
     def inc_num_verified(self):
         """ Add 1 to the number of verified commands with this English description. """
@@ -24,7 +24,7 @@ class EnglishDescription(models.Model):
         """ Checks if at least thresh minutes have passed since last updating the
         time accessed. """
         start_time = self.time_accessed
-        end_time = timezone.now
+        end_time = timezone.now()
         return (end_time - start_time) > timedelta(minutes=thresh)
 
     def __str__(self):
