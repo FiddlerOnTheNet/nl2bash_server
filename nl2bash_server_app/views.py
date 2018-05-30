@@ -29,7 +29,7 @@ def get_next_unverified(seen):
 
     for eng_cmd in unverified:
         if eng_cmd.cmd not in seen and \
-                EnglishDescription.check_time_threshold(thresh):
+                eng_cmd.check_time_threshold(thresh):
             unseen.append(eng_cmd)
 
     print("tester unseen: " + str(unseen))
