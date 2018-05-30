@@ -39,10 +39,10 @@ file_path = sys.argv[1]
 # Iterate through files in directory and operate on the .verify files
 for filename in os.scandir(file_path):
     filename = os.fsdecode(filename)
-    if filename.endswith(".verify"):
+    if filename.endswith('.verify'):
         with open(filename, 'rb') as f:
             # Read f into a string and parse its json
-            obj = json.loads(f.read().decode("utf-8"))
+            obj = json.loads(f.read().decode('utf-8', 'ignore'))
 
             # Extract the english description
             eng_text = obj['title']
