@@ -3,7 +3,7 @@ from .models import CommandPair, Verification, EnglishDescription, BashCommand
 from django.views import generic
 from django.http import HttpResponseRedirect
 import django.utils.timezone as timezone
-
+import random
 
 # Create your views here.
 def tester_init(request):
@@ -36,7 +36,8 @@ def get_next_unverified(seen):
     print("tester seen" + str(seen))
     if len(unseen) == 0:
         return None
-    return unseen[0]
+    return random.choice(unseen)
+    #return unseen[0]
 
 
 def tester(request):

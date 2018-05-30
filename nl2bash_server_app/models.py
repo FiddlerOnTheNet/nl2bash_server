@@ -25,7 +25,6 @@ class EnglishDescription(models.Model):
         time accessed. """
         start_time = self.time_accessed
         end_time = timezone.now()
-        print(start_time, end_time, end_time - start_time, timedelta(minutes=thresh))
         return (end_time - start_time) > timedelta(minutes=thresh)
 
     def __str__(self):
