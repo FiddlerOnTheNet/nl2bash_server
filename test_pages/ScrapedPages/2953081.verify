@@ -1,0 +1,28 @@
+How can I write a heredoc to a file in Bash script?
+cat << EOF > /tmp/yourfilehere
+These contents will be written to the file.
+        This line is indented.
+EOF
+#!/usr/bin/env bash
+
+if true ; then
+    cat <<- EOF > /tmp/yourfilehere
+    The leading tab is ignored.
+    EOF
+fi
+cat << 'EOF' > /tmp/yourfilehere
+The variable $FOO will not be interpreted.
+EOF
+cat <<'EOF' |  sed 's/a/b/'
+foo
+bar
+baz
+EOF
+foo
+bbr
+bbz
+cat <<'EOF' |  sed 's/a/b/' | sudo tee /etc/config_file.conf
+foo
+bar
+baz
+EOF

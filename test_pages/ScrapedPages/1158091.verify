@@ -1,0 +1,3 @@
+Defining a variable with or without export
+export name=value
+name=value

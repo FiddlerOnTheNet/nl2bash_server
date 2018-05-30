@@ -1,0 +1,2 @@
+How do I iterate over a range of numbers defined by variables in Bash?
+for i in $(seq 1 $END); do echo $i; done

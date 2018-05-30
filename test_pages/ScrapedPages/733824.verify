@@ -1,0 +1,12 @@
+How to run a shell script on a Unix console or Mac terminal?
+sh myscript
+bash myscript
+/foo/bar
+/bin/bar
+./bar
+chmod +x bar
+./bar
+#! /usr/bin/env bash
+#!/bin/bash
+#!bash
+#!/usr/bin/env bash

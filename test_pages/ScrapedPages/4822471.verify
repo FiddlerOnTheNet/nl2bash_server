@@ -1,0 +1,3 @@
+Count number of lines in a git repository
+git ls-files | xargs cat | wc -l
+git ls-files | xargs wc -l

@@ -1,0 +1,3 @@
+How to set a variable to the output of a command in Bash?
+OUTPUT="$(ls -1)"
+echo "${OUTPUT}"

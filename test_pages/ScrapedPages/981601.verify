@@ -1,0 +1,4 @@
+Colorized grep — viewing the entire file with highlighted matches
+grep --color -E 'pattern|$' file
+grep --color 'pattern\|$' file
+egrep --color 'pattern|$' file

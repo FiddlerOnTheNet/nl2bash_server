@@ -1,0 +1,4 @@
+Pipe output and capture exit status in Bash
+<command> | tee out.txt ; test ${PIPESTATUS[0]} -eq 0
+set -o pipefail
+...

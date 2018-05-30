@@ -1,0 +1,9 @@
+Check existence of input argument in a Bash shell script
+if [ $# -eq 0 ]
+  then
+    echo "No arguments supplied"
+fi
+if [ -z "$1" ]
+  then
+    echo "No argument supplied"
+fi

@@ -1,0 +1,2 @@
+Aborting a shell script if any command returns a non-zero value?
+set -e

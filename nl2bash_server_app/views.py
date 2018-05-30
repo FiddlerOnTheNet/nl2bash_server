@@ -17,11 +17,18 @@ def get_next_unverified(seen):
     """ Retrieves the next English command from the database
     that has no verified bash commands associated with it. If
     no such English commands exist, it returns None for now. """
+
+    # Want to compare the times accessed with the current time
+    # The current time - the time accessed should be greater than
+    # some threshold
+
     unverified = EnglishDescription.objects.filter(num_verified=0)
     unseen = []
+    thresh = 10
 
     for eng_cmd in unverified:
-        if eng_cmd.cmd not in seen:
+        if eng_cmd.cmd not in seen and \
+                EnglishDescription.check_time_threshold(thresh):
             unseen.append(eng_cmd)
 
     print("tester unseen: " + str(unseen))

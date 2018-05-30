@@ -1,8 +1,8 @@
 # Python script that saves verified command pairs in the format used
 # by Tellina:
-# The data is stored in two files: all.nl and all.cmd
+# The data is stored in two files: all.nl and all.cm
 # all.nl contains the natural language descriptions
-# all.cmd contains corresponding bash commands
+# all.cm contains corresponding bash commands
 # English descriptions and bash commands on the same lines
 # form command pairs.
 
@@ -16,7 +16,7 @@ django.setup()
 from nl2bash_server_app.models import CommandPair
 
 path_to_nl = 'all.nl'
-path_to_bash = 'all.cmd'
+path_to_bash = 'all.cm'
 
 # For each command pair that has not been saved yet, add them to their
 # corresponding files.

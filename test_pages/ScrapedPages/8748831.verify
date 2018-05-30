@@ -1,0 +1,2 @@
+When do we need curly braces around shell variables?
+"${foo}bar"

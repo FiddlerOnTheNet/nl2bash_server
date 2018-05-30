@@ -1,0 +1,10 @@
+How do I split a string on a delimiter in Bash?
+IFS=';' read -ra ADDR <<< "$IN"
+for i in "${ADDR[@]}"; do
+    # process "$i"
+done
+while IFS=';' read -ra ADDR; do
+      for i in "${ADDR[@]}"; do
+          # process "$i"
+      done
+ done <<< "$IN"
