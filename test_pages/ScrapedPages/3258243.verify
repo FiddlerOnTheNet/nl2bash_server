@@ -1,17 +1,1 @@
-Check if pull needed in Git
-#!/bin/sh
-
-UPSTREAM=${1:-'@{u}'}
-LOCAL=$(git rev-parse @)
-REMOTE=$(git rev-parse "$UPSTREAM")
-BASE=$(git merge-base @ "$UPSTREAM")
-
-if [ $LOCAL = $REMOTE ]; then
-    echo "Up-to-date"
-elif [ $LOCAL = $BASE ]; then
-    echo "Need to pull"
-elif [ $REMOTE = $BASE ]; then
-    echo "Need to push"
-else
-    echo "Diverged"
-fi
+{"title":"Check if pull needed in Git","commands":["#!/bin/sh\n\nUPSTREAM\u003d${1:-\u0027@{u}\u0027}\nLOCAL\u003d$(git rev-parse @)\nREMOTE\u003d$(git rev-parse \"$UPSTREAM\")\nBASE\u003d$(git merge-base @ \"$UPSTREAM\")\n\nif [ $LOCAL \u003d $REMOTE ]; then\n    echo \"Up-to-date\"\nelif [ $LOCAL \u003d $BASE ]; then\n    echo \"Need to pull\"\nelif [ $REMOTE \u003d $BASE ]; then\n    echo \"Need to push\"\nelse\n    echo \"Diverged\"\nfi \u0026\u0026 ","git fetch \u003cremote\u003e\ngit status \u0026\u0026 git fetch \u003cremote\u003e\ngit log \u003clocal_branch_name\u003e..\u003cremote_branch_name\u003e --oneline \u0026\u0026 git fetch origin\n\n# See if there are any incoming changes\ngit log HEAD..origin/master --oneline \u0026\u0026 ","git fetch\n$(git rev-parse HEAD) \u003d\u003d $(git rev-parse @{u}) \u0026\u0026 ","git ls-remote origin -h refs/heads/master \u0026\u0026 ","[ $(git rev-parse HEAD) \u003d $(git ls-remote $(git rev-parse --abbrev-ref @{u} | \\\nsed \u0027s/\\// /g\u0027) | cut -f1) ] \u0026\u0026 echo up to date || echo not up to date \u0026\u0026 "]}

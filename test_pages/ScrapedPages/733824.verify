@@ -1,12 +1,1 @@
-How to run a shell script on a Unix console or Mac terminal?
-sh myscript
-bash myscript
-/foo/bar
-/bin/bar
-./bar
-chmod +x bar
-./bar
-#! /usr/bin/env bash
-#!/bin/bash
-#!bash
-#!/usr/bin/env bash
+{"title":"How to run a shell script on a Unix console or Mac terminal?","commands":["sh myscript \u0026\u0026 bash myscript \u0026\u0026 /foo/bar\n/bin/bar\n./bar \u0026\u0026 chmod +x bar\n./bar \u0026\u0026 #! /usr/bin/env bash \u0026\u0026 #!/bin/bash \u0026\u0026 #!bash \u0026\u0026 #!/usr/bin/env bash \u0026\u0026 ","sh file.sh\n\nbash file.sh \u0026\u0026 chmod +x file.sh \u0026\u0026 ./file.sh \u0026\u0026 ","sh myscript.sh \u0026\u0026 bash myscript.sh \u0026\u0026 ",". /path/to/script.sh \u0026\u0026 source /path/to/script.sh \u0026\u0026 ",null]}

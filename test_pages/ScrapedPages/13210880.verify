@@ -1,7 +1,1 @@
-Replace one substring for another string in shell script
-#!/bin/bash
-firstString="I love Suzi and Marry"
-secondString="Sara"
-echo "${firstString/Suzi/$secondString}"    # prints 'I love Sara and Marry'
-message='The secret code is 12345'
-echo "${message//[0-9]/X}"           # prints 'The secret code is XXXXX'
+{"title":"Replace one substring for another string in shell script","commands":["#!/bin/bash\nfirstString\u003d\"I love Suzi and Marry\"\nsecondString\u003d\"Sara\"\necho \"${firstString/Suzi/$secondString}\"    # prints \u0027I love Sara and Marry\u0027 \u0026\u0026 message\u003d\u0027The secret code is 12345\u0027\necho \"${message//[0-9]/X}\"           # prints \u0027The secret code is XXXXX\u0027 \u0026\u0026 ","first\u003d\"I love Suzy and Mary\"\nsecond\u003d\"Sara\"\nfirst\u003d${first/Suzy/$second} \u0026\u0026 first\u003d\"Suzy, Suzy, Suzy\"\nsecond\u003d\"Sara\"\nfirst\u003d${first//Suzy/$second}\n# first is now \"Sara, Sara, Sara\" \u0026\u0026 ","sed \"s/Suzi/$secondString/g\" \u003c\u003c\u003c\"$firstString\" \u0026\u0026 ","echo ${first_string/Suzi/$second_string} \u0026\u0026 /home/name/foo/bar \u0026\u0026 ~/foo/bar \u0026\u0026 echo \"${PWD/#$HOME/\\~}\" \u0026\u0026 ","result\u003d$(echo $firstString | sed \u0027s/Suzi/$secondString/g\u0027) \u0026\u0026 "]}

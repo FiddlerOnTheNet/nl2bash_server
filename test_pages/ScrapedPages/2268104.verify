@@ -1,4 +1,0 @@
-Command not found error in Bash variable assignment
-STR = "foo"
-STR =foo
-STR= foo

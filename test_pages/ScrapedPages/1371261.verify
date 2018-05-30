@@ -1,9 +1,1 @@
-Get current directory name (without full path) in a Bash script
-result=${PWD##*/}          # to assign to a variable
-
-printf '%s\n' "${PWD##*/}" # to print to stdout
-                           # ...more robust than echo for unusual names
-                           #    (consider a directory named -e or -n)
-
-printf '%q\n' "${PWD##*/}" # to print to stdout, quoted for use as shell input
-                           # ...useful to make hidden characters readable.
+{"title":"Get current directory name (without full path) in a Bash script","commands":["result\u003d${PWD##*/}          # to assign to a variable\n\nprintf \u0027%s\\n\u0027 \"${PWD##*/}\" # to print to stdout\n                           # ...more robust than echo for unusual names\n                           #    (consider a directory named -e or -n)\n\nprintf \u0027%q\\n\u0027 \"${PWD##*/}\" # to print to stdout, quoted for use as shell input\n                           # ...useful to make hidden characters readable. \u0026\u0026 ","% basename \"$PWD\"\nbin \u0026\u0026 ","$ echo \"${PWD##*/}\" \u0026\u0026 ","#!/bin/bash\n\nCURRENT\u003d`pwd`\nBASENAME\u003d`basename \"$CURRENT\"`\n\necho \"$BASENAME\"\n\nexit; \u0026\u0026 ","pwd | grep -o \u0027[^/]*$\u0027 \u0026\u0026 "]}

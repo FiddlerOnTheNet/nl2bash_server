@@ -1,3 +1,1 @@
-Given two directory trees, how can I find out which files differ?
-diff --brief -r dir1/ dir2/
-diff --brief -Nr dir1/ dir2/
+{"title":"Given two directory trees, how can I find out which files differ?","commands":["diff --brief -r dir1/ dir2/ \u0026\u0026 diff --brief -Nr dir1/ dir2/ \u0026\u0026 ","diff -qr dir1/ dir2/ \u0026\u0026 diff  --brief --recursive dir1/ dir2/ \u0026\u0026 ",null,"diff --brief --recursive --no-dereference --new-file --no-ignore-file-name-case /dir1 /dir2 \u003e dirdiff_1.txt\n\nrsync --recursive --delete --links --checksum --verbose --dry-run /dir1/ /dir2/ \u003e dirdiff_2.txt \u0026\u0026 ",null]}

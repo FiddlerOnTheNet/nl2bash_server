@@ -1,9 +1,1 @@
-Check existence of input argument in a Bash shell script
-if [ $# -eq 0 ]
-  then
-    echo "No arguments supplied"
-fi
-if [ -z "$1" ]
-  then
-    echo "No argument supplied"
-fi
+{"title":"Check existence of input argument in a Bash shell script","commands":["if [ $# -eq 0 ]\n  then\n    echo \"No arguments supplied\"\nfi \u0026\u0026 if [ -z \"$1\" ]\n  then\n    echo \"No argument supplied\"\nfi \u0026\u0026 ","if [[ $# -eq 0 ]] ; then\n    echo \u0027some message\u0027\n    exit 1\nfi \u0026\u0026 ","#!/bin/bash\n# usage-message.sh\n\n: ${1?\"Usage: $0 ARGUMENT\"}\n#  Script exits here if command-line parameter absent,\n#+ with following error message.\n#    usage-message.sh: 1: Usage: usage-message.sh ARGUMENT \u0026\u0026 scale\u003d${2:-1}\nemulator @$1 -scale $scale \u0026\u0026 ","((!$#)) \u0026\u0026 echo No arguments supplied! \u0026\u0026 ((!$#)) \u0026\u0026 echo No arguments supplied! \u0026\u0026 exit 1 \u0026\u0026 let $# || echo No arguments supplied\n\nlet $# || { echo No arguments supplied; exit 1; }  # Exit if no arguments! \u0026\u0026 Evaluate arithmetic expressions.\n\n  ...\n\n  Exit Status:\n  If the last ARG evaluates to 0, let returns 1; let returns 0 otherwise. \u0026\u0026 ","#!/bin/bash\n if [ \"$#\" -eq  \"0\" ]\n   then\n     echo \"No arguments supplied\"\n else\n     echo \"Hello world\"\n fi \u0026\u0026 "]}

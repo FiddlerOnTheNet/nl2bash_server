@@ -1,2 +1,1 @@
-sed command find and replace in file and overwrite file doesn't work, it empties the file
-sed -i.bak s/STRING_TO_REPLACE/STRING_TO_REPLACE_IT/g index.html
+{"title":"sed command find and replace in file and overwrite file doesn\u0027t work, it empties the file","commands":["sed -i.bak s/STRING_TO_REPLACE/STRING_TO_REPLACE_IT/g index.html \u0026\u0026 ","sed -e \u0027script script\u0027 index.html \u003e index.html.tmp \u0026\u0026 mv index.html.tmp index.html \u0026\u0026 ","sed -i \u0027s/STRING_TO_REPLACE/STRING_TO_REPLACE_IT/g\u0027 index.html \u0026\u0026 ","sed -i bak -e s/STRING_TO_REPLACE/REPLACE_WITH/g index.html \u0026\u0026 ","perl -p -i -e \"s/\\|/x/g\" * \u0026\u0026 "]}

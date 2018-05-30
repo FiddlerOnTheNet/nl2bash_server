@@ -1,3 +1,1 @@
-Assigning default values to shell variables with a single command in bash
-FOO=${VARIABLE:-default}  # If variable not set or null, use default.
-FOO=${VARIABLE:=default}  # If variable not set or null, set it to default.
+{"title":"Assigning default values to shell variables with a single command in bash","commands":["FOO\u003d${VARIABLE:-default}  # If variable not set or null, use default. \u0026\u0026 FOO\u003d${VARIABLE:\u003ddefault}  # If variable not set or null, set it to default. \u0026\u0026 ","VARIABLE\u003d${1:-DEFAULTVALUE} \u0026\u0026 ",": \"${VARIABLE:\u003dDEFAULT_VALUE}\" \u0026\u0026 ","${VARIABLE:?default} \u0026\u0026 ","#!/bin/bash\nvariable1\u003d$1\nvariable2\u003d${2:-$variable1}\n\necho $variable1\necho $variable2 \u0026\u0026 first-value\nsecond-value \u0026\u0026 first-value\nfirst-value \u0026\u0026 "]}

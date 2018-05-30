@@ -1,4 +1,1 @@
-Colorized grep — viewing the entire file with highlighted matches
-grep --color -E 'pattern|$' file
-grep --color 'pattern\|$' file
-egrep --color 'pattern|$' file
+{"title":"Colorized grep — viewing the entire file with highlighted matches","commands":["grep --color -E \u0027pattern|$\u0027 file\ngrep --color \u0027pattern\\|$\u0027 file\negrep --color \u0027pattern|$\u0027 file \u0026\u0026 ","less -p pattern file \u0026\u0026 ","$ ack --color --passthru --pager\u003d\"${PAGER:-less -R}\" pattern files \u0026\u0026 $ ack --color --passthru pattern files | less -R \u0026\u0026 $ export ACK_PAGER_COLOR\u003d\"${PAGER:-less -R}\"\n$ ack --passthru pattern files \u0026\u0026 ","function grepe {\n    grep --color -E \"$1|$\" $2\n} \u0026\u0026 ","$ command_here | highlight green \"input\" | highlight red \"output\" \u0026\u0026 "]}

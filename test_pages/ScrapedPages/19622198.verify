@@ -1,3 +1,0 @@
-What does set -e mean in a bash script?
--e  Exit immediately if a command exits with a non-zero status.
-trap 'do_something' ERR

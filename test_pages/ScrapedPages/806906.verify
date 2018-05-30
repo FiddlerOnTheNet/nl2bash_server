@@ -1,7 +1,1 @@
-How do I test if a variable is a number in Bash?
-re='^[0-9]+$'
-if ! [[ $yournumber =~ $re ]] ; then
-   echo "error: Not a number" >&2; exit 1
-fi
-^[0-9]+([.][0-9]+)?$
-^-?[0-9]+([.][0-9]+)?$
+{"title":"How do I test if a variable is a number in Bash?","commands":["re\u003d\u0027^[0-9]+$\u0027\nif ! [[ $yournumber \u003d~ $re ]] ; then\n   echo \"error: Not a number\" \u003e\u00262; exit 1\nfi \u0026\u0026 ^[0-9]+([.][0-9]+)?$ \u0026\u0026 ^-?[0-9]+([.][0-9]+)?$ \u0026\u0026 ","case $string in\n    \u0027\u0027|*[!0-9]*) echo bad ;;\n    *) echo good ;;\nesac \u0026\u0026 ","\"$var\" -eq \"$var\" \u0026\u0026 #!/bin/bash\n\nvar\u003da\n\nif [ \"$var\" -eq \"$var\" ] 2\u003e/dev/null; then\n  echo number\nelse\n  echo not a number\nfi \u0026\u0026 \"$var\" -eq \"$var\" 2\u003e/dev/null\nif [ $? -ne 0 ]; then\n   echo $var is not number\nfi \u0026\u0026 ","[ -z \"${num##[0-9]*}\" ] \u0026\u0026 echo \"is a number\" || echo \"is not a number\"; \u0026\u0026 [ ! -z \"${num##*[!0-9]*}\" ] \u0026\u0026 echo \"is a number\" || echo \"is not a number\"; \u0026\u0026 ","isdecimal() {\n  # filter octal/hex/ord()\n  num\u003d$(printf \u0027%s\u0027 \"$1\" | sed \"s/^0*\\([1-9]\\)/\\1/; s/\u0027/^/\")\n\n  test \"$num\" \u0026\u0026 printf \u0027%f\u0027 \"$num\" \u003e/dev/null 2\u003e\u00261\n} \u0026\u0026 "]}
