@@ -56,7 +56,7 @@ def tester(request):
 
     bash_cmd_list = []
     for cmd_pair in cmd_pair_list:
-        cmd_pair.nl.cmd.time_accessed = timezone.now()
+        cmd_pair.nl.time_accessed = timezone.now()
         bash_cmd_list.append(str(cmd_pair.bash))
 
     # Update session info, add data to be passed between views
