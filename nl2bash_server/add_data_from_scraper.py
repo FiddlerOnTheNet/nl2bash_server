@@ -31,7 +31,6 @@ def clean_all():
 # Uncomment to reset database
 # clean_all()
 
-
 if len(sys.argv) < 1:
     print("Usage: " + sys.argv[0] + " <path to dir with data (.verify) files>")
     sys.exit()

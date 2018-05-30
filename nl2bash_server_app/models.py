@@ -57,9 +57,9 @@ class CommandPair(models.Model):
         """ Mark this command pair as having been saved in all.nl and all.cmd. """
         self.saved_status = 1
 
-    def set_time_accessed(self):
-        """ Sets the timefield to when this method is called. """
-        self.time_accessed = timezone.now()
+    #def set_time_accessed(self):
+    #    """ Sets the timefield to when this method is called. """
+    #    self.time_accessed = timezone.now()
 
         # def get_absolute_url(self):
     #     """ Returns the url to access a detailed record for this CommandPair. """
