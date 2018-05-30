@@ -25,7 +25,7 @@ SECRET_KEY = 'cow@aa_-xxf@o^a0%!lndr0h#9i()pi)c(ss28j@p1l$4^7v$#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['attu.cs.washington.edu']
 
 
 # Application definition
