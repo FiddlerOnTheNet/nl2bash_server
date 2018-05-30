@@ -9,7 +9,7 @@
 # Run with: python -m nl2bash_server.add_data_from_scraper <path to ScrapedPages>
 # In the directory with manage.py (top dir of project)
 
-import sys, os, django
+import sys, os, django, json
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "nl2bash_server.settings")
 django.setup()
@@ -26,13 +26,12 @@ def clean_all():
     Verification.objects.all().delete()
 
 
-# Uncomment to reset database
-# clean_all()
-
-
 if len(sys.argv) < 1:
     print("Usage: " + sys.argv[0] + " <path to dir with data (.verify) files>")
     sys.exit()
+
+# Uncommented to reset database
+clean_all()
 
 # Get path to data
 file_path = sys.argv[1]
@@ -42,18 +41,23 @@ for filename in os.scandir(file_path):
     filename = os.fsdecode(filename)
     if filename.endswith(".verify"):
         with open(filename, 'rb') as f:
-            # Extract the english description, remove trailing newline
-            eng_text = cmd=f.readline().strip()
+            # Read f into a string and parse its json
+            obj = json.load(f)
+
+            # Extract the english description
+            eng_text = obj['title']
             eng_cmd = EnglishDescription(cmd=eng_text)
 
             # Check if this English command is already in the DB
             if not EnglishDescription.objects.filter(cmd=eng_text).exists() \
                     and eng_text is not None:
                 eng_cmd.save()
-                for line in f:
+
+                # Commands are in a list now
+                for line in obj['commands']:
                     # Make a new CommandPair - this should also add the
                     # corresponding EnglishDescription and BashCommand
-                    bash_text = line.strip()
+                    bash_text = line
                     bash_cmd = BashCommand(cmd=bash_text)
                     if bash_text is not None:
                         bash_cmd.save()
