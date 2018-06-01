@@ -25,7 +25,7 @@ def get_next_unverified(seen):
             unseen.append(eng_cmd)
 
     print("tester unseen: " + str(unseen))
-    print("tester seen" + str(seen))
+    print("tester seen: " + str(seen))
     if len(unseen) == 0:
         return None
     return unseen[0]
@@ -71,7 +71,11 @@ def submit(request):
     # information. This can be directly casted into a dict, then
     # the list of bash commands can be extracted.
     if request.method == "POST":
-        checked_boxes = dict(request.POST)['cBox']
+        # Checked boxes should only have elements if things were checked.
+        checked_boxes = []
+        postDict = dict(request.POST)
+        if 'cBox' in postDict.keys():
+            checked_boxes = postDict['cBox']
         eng_text = request.session['current_eng_text']
 
         # Update the verification score for each of the checked
