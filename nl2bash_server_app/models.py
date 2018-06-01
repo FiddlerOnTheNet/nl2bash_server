@@ -1,8 +1,7 @@
 from django.db import models
 from django.urls import reverse
 import uuid
-import django.utils.timezone as timezone
-from datetime import timedelta
+
 
 # Create your models here.
 
@@ -14,18 +13,10 @@ class EnglishDescription(models.Model):
     # score above 0
     num_verified = models.IntegerField('Number of verified command pairs', null=False,
                                        default=0)
-    time_accessed = models.DateTimeField(default=timezone.now())
 
     def inc_num_verified(self):
         """ Add 1 to the number of verified commands with this English description. """
         self.num_verified += 1
-
-    def check_time_threshold(self, thresh):
-        """ Checks if at least thresh minutes have passed since last updating the
-        time accessed. """
-        start_time = self.time_accessed
-        end_time = timezone.now()
-        return (end_time - start_time) > timedelta(minutes=thresh)
 
     def __str__(self):
         """ String representation of an EnglishDescription """
@@ -57,11 +48,7 @@ class CommandPair(models.Model):
         """ Mark this command pair as having been saved in all.nl and all.cmd. """
         self.saved_status = 1
 
-    #def set_time_accessed(self):
-    #    """ Sets the timefield to when this method is called. """
-    #    self.time_accessed = timezone.now()
-
-        # def get_absolute_url(self):
+    # def get_absolute_url(self):
     #     """ Returns the url to access a detailed record for this CommandPair. """
     #     return reverse("command_pair_detail", args=[str(self.id)])
 

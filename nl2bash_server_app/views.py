@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect
 from .models import CommandPair, Verification, EnglishDescription, BashCommand
 from django.views import generic
 from django.http import HttpResponseRedirect
-import django.utils.timezone as timezone
-import random
+
 
 # Create your views here.
 def tester_init(request):
@@ -18,26 +17,18 @@ def get_next_unverified(seen):
     """ Retrieves the next English command from the database
     that has no verified bash commands associated with it. If
     no such English commands exist, it returns None for now. """
-
-    # Want to compare the times accessed with the current time
-    # The current time - the time accessed should be greater than
-    # some threshold
-
     unverified = EnglishDescription.objects.filter(num_verified=0)
     unseen = []
-    thresh = 10
 
     for eng_cmd in unverified:
-        if eng_cmd.cmd not in seen and \
-                eng_cmd.check_time_threshold(thresh):
+        if eng_cmd.cmd not in seen:
             unseen.append(eng_cmd)
 
     print("tester unseen: " + str(unseen))
     print("tester seen" + str(seen))
     if len(unseen) == 0:
         return None
-    return random.choice(unseen)
-    #return unseen[0]
+    return unseen[0]
 
 
 def tester(request):
@@ -57,7 +48,6 @@ def tester(request):
 
     bash_cmd_list = []
     for cmd_pair in cmd_pair_list:
-        cmd_pair.nl.time_accessed = timezone.now()
         bash_cmd_list.append(str(cmd_pair.bash))
 
     # Update session info, add data to be passed between views
@@ -104,7 +94,7 @@ def submit(request):
         for bash_text in bash_cmd_list:
             if bash_text not in checked_boxes:
                 cmd_pair = CommandPair.objects.filter(nl__cmd__exact=eng_text) \
-                    .filter(bash__cmd__exact=bash_text).first()
+                    .get(bash__cmd__exact=bash_text)
                 cmd_pair.ver_status.dec_ver_score()
                 cmd_pair.ver_status.save()
 
