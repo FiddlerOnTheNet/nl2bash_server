@@ -1,7 +1,5 @@
 #!/bin/bash
 
-pip3 install pipenv
-
 # Taken from fullpipeline.sh in the parent repo.
 pipenv install
 pipenv run python manage.py migrate
