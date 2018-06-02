@@ -97,12 +97,16 @@ def submit(request):
         # Unchecked pairs can be inferred using
         # values stored in session.
         bash_cmd_list = request.session['current_bash_list']
+        print("Current bash_cmd_list: " + str(bash_cmd_list))
         for bash_text in bash_cmd_list:
             if bash_text not in checked_boxes:
+                print("Not checked: " + str(bash_text))
                 cmd_pair = CommandPair.objects.filter(nl__cmd__exact=eng_text) \
                     .get(bash__cmd__exact=bash_text)
                 cmd_pair.ver_status.dec_ver_score()
+                print("Ver score after decrement: " + str(cmd_pair.ver_status.score))
                 cmd_pair.ver_status.save()
+                cmd_pair.save()
 
         # Update the "seen" session value so that the user does not see the same
         # question twice.
