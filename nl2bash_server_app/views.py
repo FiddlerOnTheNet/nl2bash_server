@@ -26,8 +26,8 @@ def get_next_unverified(seen):
         if eng_cmd.cmd not in seen:
             unseen.append(eng_cmd)
 
-    print("tester unseen: " + str(unseen))
-    print("tester seen: " + str(seen))
+    #print("tester unseen: " + str(unseen))
+    #print("tester seen: " + str(seen))
     if len(unseen) == 0:
         return None
     return unseen[0]
@@ -111,7 +111,7 @@ def submit(request):
         # Update the "seen" session value so that the user does not see the same
         # question twice.
         request.session["seen"].append(eng_text)
-        print("submit seen: " + str(request.session["seen"]))
+        #print("submit seen: " + str(request.session["seen"]))
 
     return redirect(tester)
 
@@ -123,8 +123,8 @@ def skip(request):
 
     # Update the "seen" session value so that the user does not see the same
     # question twice.
-    print("current Eng: " + str(request.session['current_eng_text']))
+    #print("current Eng: " + str(request.session['current_eng_text']))
     request.session["seen"].append(request.session['current_eng_text'])
-    print("skip seen: " + str(request.session["seen"]))
+    #print("skip seen: " + str(request.session["seen"]))
 
     return redirect(tester)

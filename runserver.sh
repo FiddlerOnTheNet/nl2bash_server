@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Taken from fullpipeline.sh in the parent repo.
+pipenv install
+pipenv run python manage.py makemigrations
 pipenv run python manage.py migrate
 pipenv run python -m nl2bash_server.add_data_from_scraper ./test_pages/ScrapedPages
 ((pipenv run python manage.py runserver) > server.output) &
