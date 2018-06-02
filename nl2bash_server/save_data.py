@@ -23,6 +23,7 @@ path_to_bash = 'all.cm'
 
 to_save = CommandPair.objects.filter(ver_status__score__gt=0).filter(saved_status=0)
 
+# For each pair, saves it to output if needed and outputs which one it does.
 for cmd_pair in to_save:
     print("Saved before?: " + str(cmd_pair.saved_status))
     with open(path_to_nl, 'a') as nl_file:

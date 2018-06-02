@@ -48,10 +48,6 @@ class CommandPair(models.Model):
         """ Mark this command pair as having been saved in all.nl and all.cmd. """
         self.saved_status = 1
 
-    # def get_absolute_url(self):
-    #     """ Returns the url to access a detailed record for this CommandPair. """
-    #     return reverse("command_pair_detail", args=[str(self.id)])
-
 
 class Verification(models.Model):
     """ Model representing the verification score for some

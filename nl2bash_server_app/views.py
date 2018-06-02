@@ -3,6 +3,8 @@ from .models import CommandPair, Verification, EnglishDescription, BashCommand
 from django.views import generic
 from django.http import HttpResponseRedirect
 
+# Note: print statements aren't for debugging; they allow the owner of the
+# server to understand what the testers are doing on the site.
 
 # Create your views here.
 def tester_init(request):

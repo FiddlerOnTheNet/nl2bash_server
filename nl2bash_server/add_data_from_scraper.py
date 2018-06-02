@@ -36,7 +36,7 @@ clean_all()
 # Get path to data
 file_path = sys.argv[1]
 
-# Iterate through files in directory and operate on the .verify files
+# Iterate through files in directory and parse JSON in .verify files
 for filename in os.scandir(file_path):
     filename = os.fsdecode(filename)
     if filename.endswith('.verify'):
