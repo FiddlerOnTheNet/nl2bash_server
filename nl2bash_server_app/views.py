@@ -26,8 +26,8 @@ def get_next_unverified(seen):
         if eng_cmd.cmd not in seen:
             unseen.append(eng_cmd)
 
-    print("tester unseen: " + str(unseen))
-    print("tester seen: " + str(seen))
+    #print("tester unseen: " + str(unseen))
+    #print("tester seen: " + str(seen))
     if len(unseen) == 0:
         return None
     return unseen[0]
@@ -97,17 +97,21 @@ def submit(request):
         # Unchecked pairs can be inferred using
         # values stored in session.
         bash_cmd_list = request.session['current_bash_list']
+        print("Current bash_cmd_list: " + str(bash_cmd_list))
         for bash_text in bash_cmd_list:
             if bash_text not in checked_boxes:
+                print("Not checked: " + str(bash_text))
                 cmd_pair = CommandPair.objects.filter(nl__cmd__exact=eng_text) \
                     .get(bash__cmd__exact=bash_text)
                 cmd_pair.ver_status.dec_ver_score()
+                print("Ver score after decrement: " + str(cmd_pair.ver_status.score))
                 cmd_pair.ver_status.save()
+                cmd_pair.save()
 
         # Update the "seen" session value so that the user does not see the same
         # question twice.
         request.session["seen"].append(eng_text)
-        print("submit seen: " + str(request.session["seen"]))
+        #print("submit seen: " + str(request.session["seen"]))
 
     return redirect(tester)
 
@@ -119,8 +123,8 @@ def skip(request):
 
     # Update the "seen" session value so that the user does not see the same
     # question twice.
-    print("current Eng: " + str(request.session['current_eng_text']))
+    #print("current Eng: " + str(request.session['current_eng_text']))
     request.session["seen"].append(request.session['current_eng_text'])
-    print("skip seen: " + str(request.session["seen"]))
+    #print("skip seen: " + str(request.session["seen"]))
 
     return redirect(tester)
