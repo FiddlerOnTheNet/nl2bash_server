@@ -6,10 +6,7 @@ pip3 install pipenv
 pipenv install
 pipenv run python manage.py migrate
 pipenv run python -m nl2bash_server.add_data_from_scraper ./test_pages/ScrapedPages
-nohup pipenv run python manage.py runserver &
-PID=$!
-read -p "Press enter to stop hosting the tester ui interface and save to all.cm/.nl.\n"
-kill -SIGINT $PID
+pipenv run python manage.py runserver
 pipenv run python -m nl2bash_server.save_data
 touch all.cm
 touch all.nl
