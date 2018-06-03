@@ -20,8 +20,10 @@ def get_next_unverified():
     that has no verified bash commands associated with it. If
     no such English commands exist, it returns None for now. """
     unverified = EnglishDescription.objects.filter(seen=False)
-
-    return unverified[0]
+    if len(unverified) > 0:
+        return unverified[0]
+    else:
+        return None
 
 
 def tester(request):
@@ -71,10 +73,11 @@ def submit(request):
         if 'cBox' in postDict.keys():
             checked_boxes = postDict['cBox']
         eng_text = request.session['current_eng_text']
-        current_nl = EnglishDescription.objects.get(cmd__exact=eng_text)
+        current_nls = EnglishDescription.objects.filter(cmd__exact=eng_text)
 
-        current_nl.mark_as_seen()
-        current_nl.save()
+        for current_nl in current_nls:
+            current_nl.mark_as_seen()
+            current_nl.save()
 
         # Update the verification score for each of the checked
         # command pairs.
