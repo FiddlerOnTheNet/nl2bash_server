@@ -37,6 +37,7 @@ def tester(request):
     """ View function that handles http requests from the
     Tester UI. Provides the tester UI with an English command
     and three associated bash commands to verify. """
+    print("Entering tester view.")
 
     # Get the next English command from the database that has
     # no verified bash commands associated with it, and has
@@ -83,21 +84,22 @@ def submit(request):
         # Update the verification score for each of the checked
         # command pairs.
         for bash_text in checked_boxes:
+            print("Checked: " + str(bash_text))
             # Get the CommandPair this bash_text is from
             cmd_pair = CommandPair.objects.filter(nl__cmd__exact=eng_text)\
                 .get(bash__cmd__exact=bash_text)
 
             cmd_pair.ver_status.inc_ver_score()  # Add 1 to verification score
-            cmd_pair.nl.inc_num_verified()  # Inc number of verified commands for
-                                            # this English description
             cmd_pair.ver_status.save()
             cmd_pair.nl.save()
             cmd_pair.save()
 
+        cmd_pair.nl.inc_num_verified()  # Mark that someone has looked at this cmdpair
+        
         # Unchecked pairs can be inferred using
         # values stored in session.
         bash_cmd_list = request.session['current_bash_list']
-        print("Current bash_cmd_list: " + str(bash_cmd_list))
+        #print("Current bash_cmd_list: " + str(bash_cmd_list))
         for bash_text in bash_cmd_list:
             if bash_text not in checked_boxes:
                 print("Not checked: " + str(bash_text))
