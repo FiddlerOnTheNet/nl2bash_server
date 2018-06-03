@@ -13,6 +13,11 @@ class EnglishDescription(models.Model):
     # score above 0
     num_verified = models.IntegerField('Number of verified command pairs', null=False,
                                        default=0)
+    seen = models.BooleanField('Seen', default=False)
+
+    def mark_as_seen(self):
+        """ Mark that someone has seen this English description. """
+        self.seen = True
 
     def inc_num_verified(self):
         """ Add 1 to the number of verified commands with this English description. """

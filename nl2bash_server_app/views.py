@@ -19,7 +19,7 @@ def get_next_unverified(seen):
     """ Retrieves the next English command from the database
     that has no verified bash commands associated with it. If
     no such English commands exist, it returns None for now. """
-    unverified = EnglishDescription.objects.filter(num_verified=0)
+    unverified = EnglishDescription.objects.filter(seen=False)
     unseen = []
 
     for eng_cmd in unverified:
@@ -80,6 +80,10 @@ def submit(request):
         if 'cBox' in postDict.keys():
             checked_boxes = postDict['cBox']
         eng_text = request.session['current_eng_text']
+        current_nl = EnglishDescription.objects.get(cmd__exact=eng_text)
+
+        current_nl.mark_as_seen()
+        current_nl.save()
 
         # Update the verification score for each of the checked
         # command pairs.
@@ -90,21 +94,24 @@ def submit(request):
                 .get(bash__cmd__exact=bash_text)
 
             cmd_pair.ver_status.inc_ver_score()  # Add 1 to verification score
+            #cmd_pair.nl.mark_as_seen()  # Mark that someone has looked at this cmdpair
+            cmd_pair.nl.inc_num_verified()  # Mark that someone has looked at this cmdpair
             cmd_pair.ver_status.save()
             cmd_pair.nl.save()
             cmd_pair.save()
 
-        cmd_pair.nl.inc_num_verified()  # Mark that someone has looked at this cmdpair
-        
         # Unchecked pairs can be inferred using
         # values stored in session.
         bash_cmd_list = request.session['current_bash_list']
         #print("Current bash_cmd_list: " + str(bash_cmd_list))
         for bash_text in bash_cmd_list:
+            cmd_pair = CommandPair.objects.filter(nl__cmd__exact=eng_text) \
+                .get(bash__cmd__exact=bash_text)
+            cmd_pair.nl.inc_num_verified()
+            #cmd_pair.nl.mark_as_seen() # Mark that someone has looked at this cmdpair
+
             if bash_text not in checked_boxes:
                 print("Not checked: " + str(bash_text))
-                cmd_pair = CommandPair.objects.filter(nl__cmd__exact=eng_text) \
-                    .get(bash__cmd__exact=bash_text)
                 cmd_pair.ver_status.dec_ver_score()
                 print("Ver score after decrement: " + str(cmd_pair.ver_status.score))
                 cmd_pair.ver_status.save()
@@ -112,6 +119,7 @@ def submit(request):
 
         # Update the "seen" session value so that the user does not see the same
         # question twice.
+        print("Current command seen? (should be true): " + str(current_nl.seen))
         request.session["seen"].append(eng_text)
         #print("submit seen: " + str(request.session["seen"]))
 
