@@ -15,22 +15,13 @@ def tester_init(request):
     return redirect(tester)
 
 
-def get_next_unverified(seen):
+def get_next_unverified():
     """ Retrieves the next English command from the database
     that has no verified bash commands associated with it. If
     no such English commands exist, it returns None for now. """
     unverified = EnglishDescription.objects.filter(seen=False)
-    unseen = []
 
-    for eng_cmd in unverified:
-        if eng_cmd.cmd not in seen:
-            unseen.append(eng_cmd)
-
-    #print("tester unseen: " + str(unseen))
-    #print("tester seen: " + str(seen))
-    if len(unseen) == 0:
-        return None
-    return unseen[0]
+    return unverified[0]
 
 
 def tester(request):
@@ -42,7 +33,7 @@ def tester(request):
     # Get the next English command from the database that has
     # no verified bash commands associated with it, and has
     # not yet been seen by the user.
-    eng_cmd = str(get_next_unverified(request.session["seen"]))
+    eng_cmd = str(get_next_unverified())
 
     # Get the list of command pairs with this english command
     # description
