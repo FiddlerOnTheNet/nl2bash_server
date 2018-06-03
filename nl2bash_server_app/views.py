@@ -9,8 +9,8 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 def tester_init(request):
     """ Sets up the session and redirects to the tester. """
-    if "seen" not in request.session:
-        request.session["seen"] = []
+    #if "seen" not in request.session:
+    #    request.session["seen"] = []
 
     return redirect(tester)
 
@@ -85,8 +85,8 @@ def submit(request):
                 .get(bash__cmd__exact=bash_text)
 
             cmd_pair.ver_status.inc_ver_score()  # Add 1 to verification score
-            #cmd_pair.nl.mark_as_seen()  # Mark that someone has looked at this cmdpair
-            cmd_pair.nl.inc_num_verified()  # Mark that someone has looked at this cmdpair
+
+            #cmd_pair.nl.inc_num_verified()  # Mark that someone has looked at this cmdpair
             cmd_pair.ver_status.save()
             cmd_pair.nl.save()
             cmd_pair.save()
@@ -102,16 +102,16 @@ def submit(request):
             #cmd_pair.nl.mark_as_seen() # Mark that someone has looked at this cmdpair
 
             if bash_text not in checked_boxes:
-                print("Not checked: " + str(bash_text))
-                cmd_pair.ver_status.dec_ver_score()
-                print("Ver score after decrement: " + str(cmd_pair.ver_status.score))
+                #print("Not checked: " + str(bash_text))
+                #cmd_pair.ver_status.dec_ver_score()
+                #print("Ver score after decrement: " + str(cmd_pair.ver_status.score))
                 cmd_pair.ver_status.save()
                 cmd_pair.save()
 
         # Update the "seen" session value so that the user does not see the same
         # question twice.
-        print("Current command seen? (should be true): " + str(current_nl.seen))
-        request.session["seen"].append(eng_text)
+        #print("Current command seen? (should be true): " + str(current_nl.seen))
+        #request.session["seen"].append(eng_text)
         #print("submit seen: " + str(request.session["seen"]))
 
     return redirect(tester)
@@ -125,7 +125,7 @@ def skip(request):
     # Update the "seen" session value so that the user does not see the same
     # question twice.
     #print("current Eng: " + str(request.session['current_eng_text']))
-    request.session["seen"].append(request.session['current_eng_text'])
+    #request.session["seen"].append(request.session['current_eng_text'])
     #print("skip seen: " + str(request.session["seen"]))
 
     return redirect(tester)
